@@ -12,16 +12,17 @@ class LibraryLoginApi(generics.GenericAPIView):
         try:
             Username = request.data.get('Username')
             print(Username)
-            Password = request.data.get('Password')
-            print(Password)
-            userdata = LibrarianModel.objects.get(Username=Username, Password=Password)
-            print("hai")
+            password = request.data.get('Password')
+            print(password)
+            userdata = LibrarianModel.objects.get(Username=Username)
+            if userdata.Password==password:
+                print("hai")
             return Response({
-                'message': 'Successful',
-                'Result': LibrarianRegistrationSerializer(userdata).data,
-                'HasError': False,
-                'status': 200
-            })
+                    'message': 'Successful',
+                    'Result': LibrarianRegistrationSerializer(userdata).data,
+                    'HasError': False,
+                    'status': 200
+                })
         except Exception as e:
             return Response({
                 'message': 'Fail',

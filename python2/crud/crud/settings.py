@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'app',
     'DjangoApp'
 ]
 
@@ -79,7 +78,7 @@ WSGI_APPLICATION = 'crud.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-        'NAME': 'LibrarayManagemanetDatabase',
+        'NAME': 'Database',
     }
 }
 

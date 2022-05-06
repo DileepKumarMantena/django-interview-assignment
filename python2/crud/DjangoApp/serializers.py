@@ -32,3 +32,38 @@ class LibraryLoginSerializer(serializers.ModelSerializer):
         user = LibrarianModel.objects.get(username=validated_data['Username'])
         user.save()
         return user
+
+
+class BookPostSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BookModel
+        fields = "__all__"
+
+    def create(self, validated_data):
+        user = BookModel.objects.create(AuthorName=validated_data['AuthorName'],
+                                             BookName=validated_data['BookName'],
+                                             BookPublishedOn=validated_data['BookPublishedOn'],
+                                             BookId=validated_data['BookId'],Status=validated_data['Status'])
+
+        user.save()
+        return user
+
+
+class MemberRegistrationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MemberModel
+        fields = "__all__"
+
+    def create(self, validated_data):
+        user = MemberModel.objects.create(MemberName=validated_data['MemberName'], MemberId=validated_data['MemberId'],
+                                             Gender=validated_data['Gender'], LibraryId=validated_data['LibraryId'])
+
+        user.save()
+        return user
+
+
+class MembersGetSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MemberModel
+        fields = "__all__"
+

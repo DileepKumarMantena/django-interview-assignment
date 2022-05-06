@@ -28,3 +28,33 @@ class LibrarianModel(models.Model):
 
     class Meta:
         db_table = "Librarian_Table"
+
+
+class BookModel(models.Model):
+    class Status(models.TextChoices):
+        Borrowed = 'Borrowed'
+        Avaliable = 'Avaliable'
+
+    AuthorName = models.CharField(max_length=250)
+    BookName = models.CharField(max_length=250)
+    BookPublishedOn = models.CharField(max_length=250)
+    BookId = models.CharField(max_length=250)
+    Status = models.CharField(max_length=10, choices=Status.choices)
+
+
+    class Meta:
+        db_table = "Book_Table"
+
+
+class MemberModel(models.Model):
+    class Gender(models.TextChoices):
+        Male = 'Male'
+        Female = 'Female'
+
+    MemberName = models.CharField(max_length=250)
+    MemberId = models.CharField(max_length=100)
+    Gender = models.CharField(max_length=10, choices=Gender.choices)
+    LibraryId = models.ForeignKey(LibrarianModel, related_name="LibraryId", on_delete=models.CASCADE)
+
+    class Meta:
+        db_table = "Memeber_Table"
