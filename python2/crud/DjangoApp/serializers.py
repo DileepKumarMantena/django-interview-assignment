@@ -41,9 +41,9 @@ class BookPostSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         user = BookModel.objects.create(AuthorName=validated_data['AuthorName'],
-                                             BookName=validated_data['BookName'],
-                                             BookPublishedOn=validated_data['BookPublishedOn'],
-                                             BookId=validated_data['BookId'],Status=validated_data['Status'])
+                                        BookName=validated_data['BookName'],
+                                        BookPublishedOn=validated_data['BookPublishedOn'],
+                                        BookId=validated_data['BookId'], Status=validated_data['Status'])
 
         user.save()
         return user
@@ -56,7 +56,7 @@ class MemberRegistrationSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         user = MemberModel.objects.create(MemberName=validated_data['MemberName'], MemberId=validated_data['MemberId'],
-                                             Gender=validated_data['Gender'], LibraryId=validated_data['LibraryId'])
+                                          Gender=validated_data['Gender'], LibraryId=validated_data['LibraryId'])
 
         user.save()
         return user
@@ -67,3 +67,14 @@ class MembersGetSerializer(serializers.ModelSerializer):
         model = MemberModel
         fields = "__all__"
 
+
+class BookStatusUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = BookModel
+        fields = ['Status']
+
+    def create(self, validated_data):
+        user = BookModel.objects.create(Status=validated_data['Status'])
+
+        user.save()
+        return user

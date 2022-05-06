@@ -4,7 +4,7 @@ from ..serializers import MemberRegistrationSerializer
 from ..models import MemberModel
 
 
-class DeleteMember(generics.GenericAPIView):
+class DeleteMemberApi(generics.GenericAPIView):
     serializer_class = MemberRegistrationSerializer
 
     def delete(self, request, id):
@@ -19,7 +19,7 @@ class DeleteMember(generics.GenericAPIView):
             })
         except MemberModel.DoesNotExist as e:
             return Response({
-                'message': 'Book Not Found',
+                'message': 'Member Not Found',
                 'Result': False,
                 'HasError': True,
                 'status': 400

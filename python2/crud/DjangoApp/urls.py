@@ -11,5 +11,9 @@ urlpatterns = [
     path('MemberUpdateApi/<int:id>/', MemberUpdateApi.as_view()),
     path('MembersGetApi/', MembersGetApi.as_view()),
     path('DeleteMember/<int:id>/', DeleteMember.as_view()),
+    path('BookGetApi/', BookGetApi.as_view()),
+    path('BooksUpdateStatusApi/<int:id>/', BooksUpdateStatusApi.as_view()),
+    path('DeleteMemberApi/<int:id>/', DeleteMemberApi.as_view()),
+
 
 ]
