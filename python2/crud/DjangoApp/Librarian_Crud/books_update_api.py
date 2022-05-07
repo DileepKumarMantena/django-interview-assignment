@@ -1,4 +1,5 @@
 from rest_framework import generics
+from rest_framework.decorators import parser_classes
 from rest_framework.response import Response
 from ..serializers import BookPostSerializer
 from ..models import BookModel
@@ -7,7 +8,7 @@ from ..models import BookModel
 class BooksUpdateApi(generics.GenericAPIView):
     serializer_class = BookPostSerializer
 
-    def put(self, request, *args,id):
+    def put(self, request, *args, id):
         try:
             userdata = BookModel.objects.get(id=id)
 
@@ -24,7 +25,7 @@ class BooksUpdateApi(generics.GenericAPIView):
         except BookModel.DoesNotExist as e:
             return Response({
                 'message': 'Not Updated',
-                'Result':False,
+                'Result': False,
                 'HasError': True,
                 'status': 400
             })
